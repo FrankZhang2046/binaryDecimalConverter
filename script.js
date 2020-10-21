@@ -1,4 +1,4 @@
-function decimalToBinary (decimalNumber, bit = 0, convertedBinary = null) {
+function decimalToBinary (decimalNumber=1, bit = 0, convertedBinary = null) {
     if (decimalNumber === 1 ) {
         if (convertedBinary === null) {return console.log(decimalNumber)}
         else return console.log(`${convertedBinary}${'0'.repeat(bit-1)}1`)
@@ -38,5 +38,13 @@ function decimalToBinary (decimalNumber, bit = 0, convertedBinary = null) {
     }
 }
 
-// decimalToBinary(19921227197704231992122719770423);
-decimalToBinary(900719925474088);
+let incrementor = 1;
+
+setInterval(() => {
+    if (incrementor < 1004) {
+        console.log(`binary of ${incrementor} is: `);
+        decimalToBinary(incrementor);
+        console.log(parseInt(incrementor.toString(), 2));
+        incrementor++;
+    }
+}, 250);
