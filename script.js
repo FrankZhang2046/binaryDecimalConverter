@@ -44,7 +44,10 @@ setInterval(() => {
     if (incrementor < 1004) {
         console.log(`binary of ${incrementor} is: `);
         decimalToBinary(incrementor);
-        console.log(parseInt(incrementor.toString(), 2));
+        console.log(incrementor.toString(2));
         incrementor++;
     }
 }, 250);
+
+decimalToBinary(35765);
+((35765).toString(2));
