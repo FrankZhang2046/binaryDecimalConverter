@@ -40,20 +40,36 @@ function decimalToBinary (decimalNumber=1, bit = 0, convertedBinary = null) {
     }
 }
 
+function binaryToDecimal(binary) {
+    const convertedStr = binary.toString();
+    console.log('length of convertedStr is: ', convertedStr.length);
+    let accumulator = 0;
+    for (let i = (convertedStr.length - 1), j = 0; i > -1; i--, j++) {
+        accumulator += Number(convertedStr[i]) * (2 ** j)
+    }
+    return accumulator;
+}
+
 let incrementer = 1;
 
-const functionValidator = setInterval(() => {
-    if (incrementer < (2**53 - 1)) {
-        const myResult = Number(decimalToBinary(incrementer));
-        const officialResult = Number(incrementer.toString(2));
-        console.log(`binary of ${incrementer} is: `);
-        console.log(myResult);
-        console.log(officialResult);
-        if (myResult === officialResult) {
-            incrementer++;
-        } else if (myResult !== officialResult) {
-            console.log(`result is inconsistent for ${incrementer}`);
-            clearInterval(functionValidator);
+function decimalToBinaryValidator() {
+    const validateDecimalToBinary = setInterval(() => {
+        if (incrementer < (2**53 - 1)) {
+            const myResult = Number(decimalToBinary(incrementer));
+            const officialResult = Number(incrementer.toString(2));
+            console.log(`binary of ${incrementer} is: `);
+            console.log(myResult);
+            console.log(officialResult);
+            if (myResult === officialResult) {
+                incrementer++;
+            } else if (myResult !== officialResult) {
+                console.log(`result is inconsistent for ${incrementer}`);
+                clearInterval(functionValidator);
+            }
         }
-    }
-}, 250);
+    }, 250);
+}
+
+// decimalToBinaryValidator();
+// console.log(binaryToDecimal(101101011111));
+// console.log(`official result is: ${Number.parseInt(101101011111, 2)}`);
